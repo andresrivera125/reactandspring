@@ -21,12 +21,12 @@ global.fetch = jest.fn(() => Promise.resolve({
 
 test("Should return an array of two users", async () => {
     const response = await userFetchApi.get();
-    const users = await response.json();
+    const json = await response.json();
+    const users = json.data;
 
-    if (expect(users) != null) {
-        expect(users.length).toEqual(2);
-        expect(users[0].id).toEqual(1);
-        expect(users[0].firstName).toEqual("Jhon");
-    }
+    expect(users).not.toBe(null);
+    expect(users.length).toEqual(2);
+    expect(users[0].id).toEqual(1);
+    expect(users[0].firstName).toEqual("Jhon");
 });
 
